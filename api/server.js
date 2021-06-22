@@ -6,6 +6,7 @@ import cors from 'cors';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from "./models/User.js";
+import Comment from "./models/Comment.js";
 
 const secret = 'secret123';
 const app = express();
@@ -80,5 +81,17 @@ app.post('/login', (req, res) => {
 app.post('/logout', (req, res) => {
   res.cookie('token', '').send();
 });
+
+app.get('/comments', (req, res) => {
+  Comment.find().then(comments => {
+    res.json(comments);
+  });
+});
+
+app.get('/comments/:id', (req, res) => {
+  Comment.findById(req.params.id).then(comment => {
+    res.json(comment);
+  });
+})
 
 app.listen(4000);

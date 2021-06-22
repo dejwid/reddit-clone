@@ -15,6 +15,7 @@ import Button from "./Button";
 import {useState,useContext} from 'react';
 import AuthModalContext from "./AuthModalContext";
 import UserContext from "./UserContext";
+import {Link} from "react-router-dom";
 
 function Header() {
   const [userDropdownVisibilityClass,setUserDropdownVisibilityClass] = useState('hidden');
@@ -30,7 +31,9 @@ function Header() {
   return (
     <header className="w-full bg-reddit_dark p-2">
       <div className="mx-4 flex relative">
-        <img src={Logo} alt="" className="w-8 h-8 mr-4"/>
+        <Link to="/">
+          <img src={Logo} alt="" className="w-8 h-8 mr-4"/>
+        </Link>
         <form action="" className="bg-reddit_dark-brighter px-3 flex rounded-md border border-reddit_border mx-4 flex-grow">
           <SearchIcon className="text-gray-300 h-6 w-6 mt-1" />
           <input type="text" className="bg-reddit_dark-brighter text-sm p-1 pl-2 pr-0 block focus:outline-none text-white" placeholder="Search" />
