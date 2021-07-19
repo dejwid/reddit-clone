@@ -18,6 +18,11 @@ app.use(cors({
   credentials: true,
 }));
 
+function getUserFromToken(token) {
+  const userInfo = jwt.verify(token, secret);
+  return User.findById(userInfo.id);
+}
+
 await mongoose.connect('mongodb://localhost:27017/reddit', {useNewUrlParser:true,useUnifiedTopology:true,});
 const db = mongoose.connection;
 db.on('error', console.log);
@@ -47,16 +52,15 @@ app.post('/register', (req, res) => {
 
 app.get('/user', (req, res) => {
   const token = req.cookies.token;
-  console.log({token});
-  const userInfo = jwt.verify(token, secret);
-    User.findById(userInfo.id)
-      .then(user => {
-        res.json({username:user.username});
-      })
-      .catch(err => {
-        console.log(err);
-        res.sendStatus(500);
-      });
+
+  getUserFromToken(token)
+    .then(user => {
+      res.json({username:user.username});
+    })
+    .catch(err => {
+      console.log(err);
+      res.sendStatus(500);
+    });
 
 });
 
@@ -83,7 +87,7 @@ app.post('/logout', (req, res) => {
 });
 
 app.get('/comments', (req, res) => {
-  Comment.find().then(comments => {
+  Comment.find().sort({postedAt: -1}).then(comments => {
     res.json(comments);
   });
 });
@@ -92,6 +96,25 @@ app.get('/comments/:id', (req, res) => {
   Comment.findById(req.params.id).then(comment => {
     res.json(comment);
   });
-})
+});
+
+app.post('/comments', (req, res) => {
+  const token = req.cookies.token;
+  if (!token) {
+    res.sendStatus(401);
+    return;
+  }
+  getUserFromToken(token)
+    .then(userInfo => {
+      const {title,body} = req.body;
+      const comment = new Comment({title,body,author:userInfo.username,postedAt:new Date(),});
+      comment.save().then(savedComment => {
+        res.json(savedComment);
+      }).catch(console.log);
+    })
+    .catch(() => {
+      res.sendStatus(401);
+    });
+});
 
 app.listen(4000);

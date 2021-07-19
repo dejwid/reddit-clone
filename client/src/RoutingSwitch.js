@@ -14,7 +14,12 @@ function RoutingSwitch() {
 
   if (location.state && location.state.commentId) {
     location.pathname = '/';
-    commentId = location.state.commentId;
+    if (postOpen) {
+      commentId = location.state.commentId;
+    } else {
+      location.state.commentId = null;
+    }
+
   }
 
   useEffect(() => {
