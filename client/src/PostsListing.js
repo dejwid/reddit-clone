@@ -16,7 +16,7 @@ function PostsListing() {
   return (
     <div className="bg-reddit_dark">
       {comments.map(comment => (
-        <Post {...comment} />
+        <Post {...comment} isListing={true} />
       ))}
     </div>
   );

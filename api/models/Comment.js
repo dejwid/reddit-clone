@@ -5,6 +5,8 @@ const schema = new mongoose.Schema({
   title: {type:String},
   body: {type:String,required:true},
   postedAt: {type:Date,required:true},
+  parentId: {type:mongoose.ObjectId,required:false},
+  rootId: {type:mongoose.ObjectId,required:false},
 });
 const Comment = mongoose.model('Comment', schema);
 

@@ -3,9 +3,14 @@ import PostContent from "./PostContent";
 
 function Post(props) {
 
-  const postClasses = "block border border-reddit_border bg-reddit_dark-brighter p-2 rounded-md " + (props.open ? "" : "hover:border-reddit_text cursor-pointer");
+  let postClasses = "block border rounded-md " + (props.open ? "" : "hover:border-reddit_text cursor-pointer");
+  if (props.isListing) {
+    postClasses += " bg-reddit_dark-brighter p-3 mx-6 border-2 border-reddit_border";
+  } else {
+    postClasses += " border-none";
+  }
   return (
-    <div className="px-6 text-reddit_text pb-4">
+    <div className="text-reddit_text pb-4">
       {props.open && (
         <div className={postClasses}>
           <PostContent {...props} />
