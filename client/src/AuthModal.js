@@ -45,7 +45,7 @@ function AuthModal() {
   return (
     <div className={"w-screen h-screen fixed top-0 left-0 z-30 flex "+visibleClass} style={{backgroundColor:'rgba(0,0,0,.6)'}}>
       <ClickOutHandler onClickOut={() => modalContext.setShow(false)}>
-        <div className="border border-reddit_dark-brightest w-3/4 sm:w-1/2 md:w-1/4 bg-reddit_dark p-5 text-reddit_text self-center mx-auto rounded-md">
+        <div className="border border-reddit_dark-brightest w-3/4 sm:w-1/2 lg:w-1/4 bg-reddit_dark p-5 text-reddit_text self-center mx-auto rounded-md">
           {modalType === 'login' && (
             <h1 className="text-2xl mb-5">Login</h1>
           )}

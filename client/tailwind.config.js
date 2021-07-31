@@ -4,6 +4,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        reddit_orange: '#f54404',
+        reddit_red: '#f54404',
         reddit_dark: {
           DEFAULT: '#030303',
           brighter: '#1a1a1a',

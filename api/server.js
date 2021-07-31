@@ -7,6 +7,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from "./models/User.js";
 import Comment from "./models/Comment.js";
+import VotingRoutes from "./VotingRoutes.js";
 
 const secret = 'secret123';
 const app = express();
@@ -17,6 +18,8 @@ app.use(cors({
   origin: 'http://localhost:3000',
   credentials: true,
 }));
+
+app.use(VotingRoutes);
 
 function getUserFromToken(token) {
   const userInfo = jwt.verify(token, secret);

@@ -5,6 +5,7 @@ import {useState, useContext} from 'react';
 import RootCommentContext from "./RootCommentContext";
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
+import Voting from "./Voting";
 
 function Comments(props) {
   const [showForm,setShowForm] = useState(false);
@@ -24,10 +25,11 @@ function Comments(props) {
             </div>
             <div className="border-l-2 border-reddit_text-darker p-3 pb-0"
                  style={{marginLeft:'18px'}}>
-              <div className="pl-4">
+              <div className="pl-4 -mt-4">
                 <div>
                   <ReactMarkdown remarkPlugins={[gfm]} children={comment.body} />
                 </div>
+                <Voting commentId={comment._id} />
                 <Button type={'button'}
                         onClick={() => setShowForm(comment._id)}
                         className="bg-reddit_dark-brighter text-reddit_text-darker border-none py-2 pl-0 pr-0">Reply</Button>
