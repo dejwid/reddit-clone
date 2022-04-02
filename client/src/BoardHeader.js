@@ -6,7 +6,7 @@ function BoardHeader() {
       <div className="bg-reddit_dark-brighter">
         <div className="mx-6 relative flex">
           <div className="h-20 w-20 rounded-full overflow-hidden relative -top-3 border-4 border-white bg-white">
-            <img src="https://styles.redditmedia.com/t5_2qs0q/styles/communityIcon_5ey8lzmwmxp21.png?width=256&s=5a85d5c682f40e3cf317c560b219585ac0afce78" alt=""/>
+            <img src="https://styles.redditmedia.com/t5_2qs0q/styles/communityIcon_kxcmzy9bt1381.jpg?width=256&format=pjpg&s=0a2e472f6fae0712fee4a3b5d44920fe35dbcdaa" alt=""/>
           </div>
           <div className="pt-2 pl-4">
             <h1 className="text-gray-300 text-3xl">webdev: reddit for web developers</h1>

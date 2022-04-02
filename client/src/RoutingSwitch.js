@@ -3,6 +3,7 @@ import {useState, useEffect} from "react";
 import Board from "./Board";
 import CommentPage from "./CommentPage";
 import CommentModal from "./CommentModal";
+import SearchResultsPage from "./SearchResultsPage";
 
 function RoutingSwitch() {
 
@@ -43,6 +44,7 @@ function RoutingSwitch() {
       <Switch location={location}>
         <Route exact path="/" component={Board} />
         <Route exact path="/comments/:id" component={CommentPage} />
+        <Route exact path="/search/:text" component={SearchResultsPage} />
       </Switch>
     </div>
   );

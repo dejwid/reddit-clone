@@ -90,7 +90,11 @@ app.post('/logout', (req, res) => {
 });
 
 app.get('/comments', (req, res) => {
-  Comment.find({rootId:null}).sort({postedAt: -1}).then(comments => {
+  const search = req.query.search;
+  const filters = search
+    ? {body: {$regex: '.*'+search+'.*'}}
+    : {rootId:null};
+  Comment.find(filters).sort({postedAt: -1}).then(comments => {
     res.json(comments);
   });
 });
